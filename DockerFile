@@ -2,9 +2,13 @@ FROM ubuntu:latest AS build
 
 RUN apt-get update && apt-get install -y \
     openjdk-17-jdk \
-    maven \
+    maven 
+
 COPY . .
+
 RUN mvn clean install
+
+FROM openjdk:17-jdk-alpine
 
 EXPOSE 8080
 
